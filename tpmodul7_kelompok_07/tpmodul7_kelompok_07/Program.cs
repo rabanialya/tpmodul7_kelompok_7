@@ -1,4 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
+
+public class DataMahasiswa2311104046
 
 using System.Collections.Generic;
 using System.IO;
@@ -33,10 +37,14 @@ public class DataMahasiswa2311104076
         public long nim { get; set; }
         public string fakultas { get; set; }
 
+
     }
 
     public void ReadJSON()
     {
+        string json = File.ReadAllText("tp7_1_2311104046.json");
+        Mahasiswa mhs = JsonSerializer.Deserialize<Mahasiswa>(json);
+        Console.WriteLine($"Nama {mhs.nama.depan} {mhs.nama.belakang} dengan nim {mhs.nim} dari fakultas {mhs.fakultas}");
 
         string filePath = "tp7_2_2311104076.json";
         string jsonText = File.ReadAllText(filePath);
@@ -62,6 +70,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        DataMahasiswa2311104046 data = new DataMahasiswa2311104046();
+        data.ReadJSON();
+    }
+}
+
 
         KuliahMahasiswa2311104076 kuliah = new KuliahMahasiswa2311104076();
         kuliah.ReadJSON();
